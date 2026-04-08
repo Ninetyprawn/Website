@@ -1,0 +1,205 @@
+/* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
+   HTML content. To learn how to do something, just try searching Google for questions like
+   "how to change link color." */
+
+   body {
+    background-image: url("Clifftops.jpg");
+    background-size: 100%;
+    background-color: #1A1F16;
+  }
+  
+  h1 {
+    
+    margin: 10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    color: #DFD6A7;
+    text-align: center;
+    font-family: "Lucida Console";
+    
+  } 
+  h2 {
+    
+    margin: 10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    color: #DFD6A7;
+    text-align: center;
+    font-family: "Lucida Console";
+  }
+  a {
+    color: #DFD6A7;
+    text-align: center;
+    font-family: "Lucida Console";
+    
+  }
+  
+  h3 {
+    color: #DFD6A7;
+    text-align: center;
+    font-family: "Lucida Console";
+  }
+  
+  p {
+    color: #DFD6A7;
+    text-align: center;
+    font-family: "Lucida Console";
+    
+  }
+  
+  .body-text {
+    font-size: 100%;
+    margin: 10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+  
+  .header {
+    border: 5px solid #4A7856;
+    background-color: #1E3F20;
+    width: auto;
+    height: auto;
+    margin: auto;
+  
+    
+  }
+  
+  
+  
+  
+  
+  .body {
+    border: 5px solid #4A7856;
+    background-color: #1E3F20;
+    text-align: center;
+    height: auto;
+    
+    width: auto;
+    margin: auto;
+    margin-top: 0px;
+    order:3 ;
+  }
+  
+  .border {
+    display: table;
+            width: 50%;
+            overflow: auto;
+            font-family: verdana, sans-serif;
+            border: 3px #94ECBE solid;
+            height: auto;
+            margin: auto;
+            margin-top: 0px;
+  }
+  
+  .side {
+    border: 3px #94ECBE solid;
+    margin:auto;
+    margin-bottom:0px;
+    margin-top:auto;
+    
+    overflow:auto;
+    width:15%;
+    position:fixed;
+    text-align:center;
+    order:1 ;
+    
+    }
+  
+  .side-div {
+    border: 5px solid #4A7856;
+    background-color: #1E3F20;
+    text-align: center;
+    height: auto;
+    width: auto;
+    margin: auto;
+  }
+  
+    
+  
+  .updates {
+   background-color: #4A7856;
+   text-align: center;
+   height: 200px;
+  
+   margin-right: 100px;
+   margin-left: 100px;
+   margin-bottom: 10px;
+   overflow: auto;
+  }
+  
+  .art {
+   background-color: #4A7856;
+   text-align: center;
+   height: 300px;
+   
+   margin-right: 50px;
+   margin-left: 50px;
+   margin-bottom: 10px;
+   margin-top: 10px;
+   overflow: auto;
+  
+  
+  }
+  
+  .peices {
+  height:250px;
+  }
+  
+  
+  @media only screen and (max-width: 600px) {
+  .side {
+   display: table;
+            width: 50%;
+            overflow: auto;
+            font-family: verdana, sans-serif;
+            border: 3px #94ECBE solid;
+            height: auto;
+            margin: auto;
+            margin-bottom: 0px;
+            position: relative;
+    }  
+    
+    
+  }
+  @media only screen and (max-width: 600px) {
+    .header {
+    border: 5px solid #4A7856;
+    background-color: #1E3F20;
+    width: 300px;
+    height: auto;
+    margin: 0px;
+  
+    
+  }
+    }
+  
+  
+  @media only screen and (max-width: 600px) {
+    
+    .body {
+    border: 5px solid #4A7856;
+    background-color: #1E3F20;
+    text-align: center;
+    height: auto;
+    
+    width: 300px;
+    margin: 0px;
+    margin-top: 0px;
+    order:3 ;
+  }
+    
+    
+    }
+    
+  @media only screen and (max-width: 600px) {  
+  .side-div {
+    border: 5px solid #4A7856;
+    background-color: #1E3F20;
+    text-align: center;
+    height: auto;
+    width: 300px;
+    margin: auto;
+  }  
+  }
+  
+  
