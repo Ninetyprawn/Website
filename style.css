@@ -1,206 +1,390 @@
-/* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
-   HTML content. To learn how to do something, just try searching Google for questions like
-   "how to change link color." */
 
-   body {
-    background-image: url("glacier.jpg");
-    background-size: 100%;
-    background-color: #1A1F16;
-  }
-  
-  h1 {
-    
-    margin: 10%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    color: #DFD6A7;
-    text-align: center;
-    font-family: "Lucida Console";
-    
-  } 
-  h2 {
-    
-    margin: 10%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    color: #DFD6A7;
-    text-align: center;
-    font-family: "Lucida Console";
-  }
-  a {
-    color: #DFD6A7;
-    text-align: center;
-    font-family: "Lucida Console";
-    
-  }
-  
-  h3 {
-    color: #DFD6A7;
-    text-align: center;
-    font-family: "Lucida Console";
-  }
-  
-  p {
-    color: #DFD6A7;
-    text-align: center;
-    font-family: "Lucida Console";
-    
-  }
-  
-  .body-text {
-    font-size: 100%;
-    margin: 10%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-  }
-  
-  .header {
-    
-    background-color: #1E3F20;
-    width: 50%;
-    height: auto;
-    margin: auto;
-    margin-top: 10px;
-  
-    
-  }
-  
-  
-  
-  
-  
-  .body {
-    
-    background-color: #1E3F20;
-    text-align: center;
-    height: 300px;
-    
-    width: 50%;
-    margin: auto;
-    margin-top: 10px;
-    order:3 ;
-  }
-  
-  .border {
+
+:root {
+  --bg:          #1A1F16;
+  --panel:       #1e3f20e7;
+  --panel-mid:   #4A7856;
+  --border:      #94ECBE;
+  --text:        #DFD6A7;
+  --accent:      #80c9a3a9;
+  --moss:        #5C7A3E;
+  --bark:        #3B2E1E;
+  --fern:        #7AAB5A;
+  --cream:       #F0E8CC;
+  --shadow:      rgba(20, 28, 14, 0.72);
+  --font-body:   Georgia, 'Times New Roman', serif;
+  --font-ui:     'Lucida Console', 'Courier New', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-image: url("glacier.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center top;
+  background-color: #1A1F16;
+  color: var(--warm-text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+
+
+/* ---- Typography ---- */
+h1 {
+  font-family: var(--font-body);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--cream);
+  font-weight: normal;
+  margin: 10%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: center;
+}
+
+h2 {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2.5vw, 1rem);
+  color: var(--cream);
+  font-weight: normal;
+  margin: 10%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: center;
+}
+
+h3 {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  color: var(--fern);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+p {
+  font-family: var(--font-body);
+  color: var(--cream);
+  font-size: 1rem;
+  text-align: center;
+}
+
+a {
+  display: block;
+  color: var(--cream);
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  text-decoration: none;
+  padding: 4px 0;
+}
+a:hover { color: var(--accent); }
+
+/* ---- Layout ---- */
+.main-wrap {
+  margin-left: 200px;
+  padding: 0 20px 60px;
+}
+
+/* ---- Sidebar ---- */
+.side {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 170px;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: var(--panel);
+  backdrop-filter: blur(4px);
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 10;
+}
+
+.side-div {
+  border: 5px solid var(--panel-mid);
+  background-color: rgba(26, 31, 22, 0.6);
+  text-align: center;
+  padding: 12px 10px;
+}
+
+/* ---- Header ---- */
+.header {
+  background-color: var(--panel);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  width: 50%;
+  height: auto;
+  margin: 25%;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  padding: 8px 0;
+}
+
+/* ---- Body panel ---- */
+.body {
+  background-color: var(--panel);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  text-align: center;
+  height: 100%;
+  margin: auto;
+  width: 50%;
+  padding: 20px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.body-text {
+  font-size: 1rem;
+  margin: 10%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+
+/* ---- Filter Bar ---- */
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.filter-btn {
+  background-color:var(--bg);
+  border: 1px solid var(--accent);
+  color: var(--cream);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-btn:hover,
+.filter-btn.active {
+  background-color: var(--panel-mid);
+  color: var(--cream);
+  border-color: var(--border);
+}
+
+/* ---- Gallery Grid ---- */
+.gallery-grid {
+  columns: 3 200px;
+  column-gap: 10px;
+  padding: 0 20px;
+}
+
+.photo-card {
+  break-inside: avoid;
+  position: relative;
+  margin-bottom: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--bg);
+  color: var(--cream);
+  transition: border-color 0.25s, transform 0.2s;
+}
+
+.photo-card:hover {
+  transform: translateY(-2px);
+}
+
+.photo-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 0.3s;
+}
+
+.photo-card:hover img { opacity: 0.9; }
+
+.photo-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 20px 10px 8px;
+  background: linear-gradient(transparent, var(--bg));
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.photo-card:hover .photo-overlay { opacity: 1; }
+
+.photo-label {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--cream);
+}
+
+/* ---- Updates ---- */
+.updates {
+  background-color: var(--panel-mid);
+  text-align: center;
+  height: 200px;
+  margin-right: 100px;
+  margin-left: 100px;
+  margin-bottom: 100px;
+  overflow: auto;
+  padding: 12px 0;
+}
+
+.updates p {
+  padding: 7px 16px;
+  font-size: 0.78rem;
+  text-align: left;
+}
+
+/* ---- Lightbox ---- */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+}
+.lightbox.active { display: flex; }
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+.lightbox-close {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--cream);
+  padding: 7px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.lightbox-close:hover {
+  background: rgba(74, 120, 86, 0.5);
+  color: var(--cream);
+}
+
+.lb-text {
+  display: none;
+  max-width: 680px;
+  max-height: 75vh;
+  overflow-y: auto;
+  background: rgba(30, 63, 32, 0.92);
+  border: 1px solid rgba(94, 148, 100, 0.45);
+  padding: 32px 40px;
+  color: var(--warm-text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+.text-card {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.text-card .card-title {
+  font-family: var(--font-body);
+  color: var(--cream);
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.text-card .card-date {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  color: var(--fern);
+  letter-spacing: 0.1em;
+}
+
+.text-card .card-preview {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.text-card .read-more {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: var(--fern);
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  display: inline;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+}
+.text-card .read-more:hover { color: var(--cream); }
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(74, 120, 86, 0.6); border-radius: 3px; }
+
+/* ---- Mobile ---- */
+@media only screen and (max-width: 600px) {
+  .side {
     display: table;
-            width: 50%;
-            overflow: auto;
-            font-family: verdana, sans-serif;
-            border: 3px #94ECBE solid;
-            height: auto;
-            margin: auto;
-            margin-top: 0px;
-  }
-  
-  .side {
-    border: 3px #94ECBE solid;
-    margin:auto;
-    margin-bottom:0px;
-    margin-top:auto;
-    
-    overflow:auto;
-    width:15%;
-    position:fixed;
-    text-align:center;
-    order:1 ;
-    
-    }
-  
-  .side-div {
-    border: 5px solid #4A7856;
-    background-color: #1E3F20;
-    text-align: center;
+    width: 50%;
+    overflow: auto;
     height: auto;
-    width: auto;
     margin: auto;
+    margin-bottom: 0px;
+    position: relative;
   }
-  
-    
-  
-  .updates {
-   background-color: #4A7856;
-   text-align: center;
-   height: 200px;
-  
-   margin-right: 100px;
-   margin-left: 100px;
-   margin-bottom: 100px;
-   overflow: auto;
-  }
-  
-  .art {
-   background-color: #4A7856;
-   text-align: center;
-   height: 300px;
-   
-   margin-right: 50px;
-   margin-left: 50px;
-   margin-bottom: 10px;
-   margin-top: 10px;
-   overflow: auto;
-  
-  
-  }
-  
-  .peices {
-  height:250px;
-  }
-  
-  
-  @media only screen and (max-width: 600px) {
-  .side {
-   display: table;
-            width: 50%;
-            overflow: auto;
-            font-family: verdana, sans-serif;
-            border: 3px #94ECBE solid;
-            height: auto;
-            margin: auto;
-            margin-bottom: 0px;
-            position: relative;
-    }  
-    
-    
-  }
-  @media only screen and (max-width: 600px) {
-    .header {
-    border: 5px solid #4A7856;
-    background-color: #1E3F20;
+
+  .header {
+    background-color: var(--panel);
     width: 300px;
     height: auto;
-    margin: 0px;
-  
-    
+    margin: auto;
+    position: relative;
   }
-    }
-  
-  
-  @media only screen and (max-width: 600px) {
-    
-    .body {
-    border: 5px solid #4A7856;
-    background-color: #1E3F20;
+
+  .body {
+    background-color: rgba(30, 63, 32, 0.88);
     text-align: center;
     height: auto;
-    
     width: 300px;
-    margin: 0px;
+    margin: auto;
     margin-top: 0px;
-    order:3 ;
+    position: relative;
   }
-    
-    
-    }
-    
-  @media only screen and (max-width: 600px) {  
+
   .side-div {
-    border: 5px solid #4A7856;
-    background-color: #1E3F20;
+    background-color: var(--panel);
     text-align: center;
     height: auto;
     width: 300px;
     margin: auto;
-  }  
   }
-  
-  
+
+  .main-wrap { margin-left: 0; padding: 0 10px 40px; }
+
+  .gallery-grid { columns: 2 140px; }
+
+  .updates {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}

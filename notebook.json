@@ -1,0 +1,16 @@
+[
+  {
+    "type": "image",
+    "file": "Notebook/Sketch Warmup.PNG",
+    "title": "quick sketch",
+    "date": "2024-03-01",
+    "category": "sketches"
+  },
+  {
+    "type": "text",
+    "file": "Notebook/test.txt",
+    "title": "some thoughts",
+    "date": "2024-03-05",
+    "category": "writing"
+  }
+]

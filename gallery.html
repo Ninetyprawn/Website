@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link href="./style.css" rel="stylesheet" type="text/css" media="all"/>
+  </head>
+  <body>
+
+    <!-- Sidebar -->
+    <div class="side">
+      <div class="side-div">
+        <h3>Site Navigation</h3>
+        <a href="index.html">- Home</a>
+        <a href="gallery.html">- Gallery</a>
+        <a href="about.html">- About</a>
+        <a href="notebook.html">- Notebook</a>
+      </div>
+      <div class="side-div">
+        <h3>Socials</h3>
+        <a href="https://www.tumblr.com/ninetyprawn">- Tumblr</a>
+        <a href="https://bsky.app/profile/ninetyprawn.com">- Bluesky</a>
+        <a href="https://www.instagram.com/ninetyprawn/">- Instagram</a>
+      </div>
+    </div>
+
+    <div class="main-wrap">
+
+      <div class="header">
+        <h1>Gallery</h1>
+      </div>
+
+      <div class="body">
+
+
+
+        <!-- Filter Tabs -->
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="photos">Photos</button>
+          <button class="filter-btn" data-filter="other art">Other Art</button>
+
+        </div>
+
+        <!-- Gallery Grid — filled by JavaScript from photos.json -->
+        <div class="gallery-grid" id="gallery">
+          <p class="loading-msg">Loading photos...</p>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close" id="lb-close">× Close</button>
+      <img src="" alt="full size" id="lb-img">
+    </div>
+
+    <script>
+  const lightbox = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lb-img');
+  const lbClose  = document.getElementById('lb-close');
+  const gallery  = document.getElementById('gallery');
+
+  function openLightbox(src) {
+    lbImg.src = src;
+    lightbox.classList.add('active');
+  }
+
+  function createCard(photo) {
+    const card = document.createElement('div');
+    card.className = 'photo-card';
+    card.dataset.category = photo.category;
+    card.innerHTML = `
+      <img src="${photo.file}" alt="${photo.label}" loading="lazy">
+      <div class="photo-overlay"><span class="photo-label">${photo.label}</span></div>`;
+    card.querySelector('img').addEventListener('click', () => openLightbox(photo.file));
+    return card;
+  }
+
+  fetch('gallery.json')
+    .then(r => r.json())
+    .then(photos => {
+      gallery.innerHTML = '';
+      if (photos.length === 0) {
+        gallery.innerHTML = '<p class="loading-msg">No photos yet — add some to gallery.json!</p>';
+        return;
+      }
+      photos.forEach(photo => gallery.appendChild(createCard(photo)));
+    })
+    .catch(() => {
+      gallery.innerHTML = '<p class="loading-msg">Could not load gallery.json</p>';
+    });
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.photo-card').forEach(card => {
+        card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'block' : 'none';
+      });
+    });
+  });
+
+  lbClose.addEventListener('click', () => lightbox.classList.remove('active'));
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('active'); });
+</script>
+
+  </body>
+</html>

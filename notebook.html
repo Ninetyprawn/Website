@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sketchbook</title>
+    <link href="./style.css" rel="stylesheet" type="text/css" media="all"/>
+  </head>
+  <body>
+
+    <!-- Sidebar -->
+    <div class="side">
+      <div class="side-div">
+        <h3>Site Navigation</h3>
+        <a href="index.html">- Home</a>
+        <a href="gallery.html">- Gallery</a>
+        <a href="about.html">- About</a>
+        <a href="notebook.html">- Notebook</a>
+      </div>
+      <div class="side-div">
+        <h3>Socials</h3>
+        <a href="https://www.tumblr.com/ninetyprawn">- Tumblr</a>
+        <a href="https://bsky.app/profile/ninetyprawn.com">- Bluesky</a>
+        <a href="https://www.instagram.com/ninetyprawn/">- Instagram</a>
+      </div>
+    </div>
+
+    <div class="main-wrap">
+
+      <div class="header">
+        <h1>Sketchbook</h1>
+      </div>
+
+      <div class="body">
+
+
+
+        <!-- Filter Tabs -->
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="sketches">Sketches</button>
+          <button class="filter-btn" data-filter="writing">Writing</button>
+        </div>
+
+        <div class="gallery-grid" id="gallery">
+          <p class="loading-msg">Loading...</p>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close" id="lb-close">× Close</button>
+      <img src="" alt="full size" id="lb-img">
+      <div class="lb-text" id="lb-text"></div>
+    </div>
+
+    <script>
+      const lightbox = document.getElementById('lightbox');
+      const lbImg    = document.getElementById('lb-img');
+      const lbText   = document.getElementById('lb-text');
+      const lbClose  = document.getElementById('lb-close');
+      const gallery  = document.getElementById('gallery');
+
+      function openImage(src) {
+        lbImg.style.display = 'block';
+        lbText.style.display = 'none';
+        lbImg.src = src;
+        lightbox.classList.add('active');
+      }
+
+      function openText(content, title) {
+        lbImg.style.display = 'none';
+        lbText.style.display = 'block';
+        lbText.textContent = content;
+        lightbox.classList.add('active');
+      }
+
+      function createImageCard(photo) {
+        const card = document.createElement('div');
+        card.className = 'photo-card';
+        card.dataset.category = photo.category;
+        card.innerHTML = `
+          <img src="${photo.file}" alt="${photo.title}" loading="lazy">
+          <div class="photo-overlay"><span class="photo-label">${photo.title}</span></div>`;
+        card.querySelector('img').addEventListener('click', () => openImage(photo.file));
+        return card;
+      }
+
+      function createTextCard(entry) {
+        const card = document.createElement('div');
+        card.className = 'photo-card text-card';
+        card.dataset.category = entry.category;
+        card.innerHTML = `
+          <span class="card-date">${entry.date}</span>
+          <span class="card-title">${entry.title}</span>
+          <p class="card-preview"></p>
+          <button class="read-more">read more →</button>`;
+
+        // fetch the text file, fill in preview and lightbox
+        fetch(entry.file)
+          .then(r => r.text())
+          .then(content => {
+            card.querySelector('.card-preview').textContent = content;
+            card.querySelector('.read-more').addEventListener('click', () => openText(content, entry.title));
+          });
+
+        return card;
+      }
+
+      fetch('notebook.json')
+        .then(r => r.json())
+        .then(entries => {
+          gallery.innerHTML = '';
+          entries.forEach(entry => {
+            gallery.appendChild(
+              entry.type === 'text' ? createTextCard(entry) : createImageCard(entry)
+            );
+          });
+        })
+        .catch(() => {
+          gallery.innerHTML = '<p class="loading-msg">Could not load notebook.json</p>';
+        });
+
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.dataset.filter;
+          document.querySelectorAll('.photo-card').forEach(card => {
+            card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'block' : 'none';
+          });
+        });
+      });
+
+      lbClose.addEventListener('click', () => lightbox.classList.remove('active'));
+      lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('active'); });
+    </script>
+  </body>
+</html>
