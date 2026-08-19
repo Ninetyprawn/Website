@@ -5,12 +5,12 @@
   --panel:       #1e3f20e7;
   --panel-mid:   #4A7856;
   --border:      #94ECBE;
-  --text:        #DFD6A7;
+  --text:        #dbc8a2;
   --accent:      #80c9a3a9;
   --moss:        #5C7A3E;
   --bark:        #3B2E1E;
   --fern:        #7AAB5A;
-  --cream:       #F0E8CC;
+  --cream:       #f0ece0;
   --shadow:      rgba(20, 28, 14, 0.72);
   --font-body:   Georgia, 'Times New Roman', serif;
   --font-ui:     'Lucida Console', 'Courier New', monospace;
@@ -37,20 +37,20 @@ h1 {
   font-size: clamp(2rem, 5vw, 3rem);
   color: var(--cream);
   font-weight: normal;
-  margin: 10%;
-  margin-top: 2%;
-  margin-bottom: 2%;
+  margin: 1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
   text-align: center;
 }
 
 h2 {
   font-family: var(--font-body);
-  font-size: clamp(1rem, 2.5vw, 1rem);
+  font-size: clamp(2rem, 3vw, 1.5rem);
   color: var(--cream);
   font-weight: normal;
-  margin: 10%;
-  margin-top: 2%;
-  margin-bottom: 2%;
+  margin: 1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
   text-align: center;
 }
 
@@ -65,9 +65,11 @@ h3 {
 
 p {
   font-family: var(--font-body);
-  color: var(--cream);
+  color: var(--text);
   font-size: 1rem;
   text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 a {
